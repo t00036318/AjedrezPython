@@ -1,0 +1,57 @@
+import pygame
+from pygame.locals import *
+
+
+pygame.init()
+
+# Dimensiones y la declaracion de la pantalla
+screen = pygame.display.set_mode((400, 400))
+dim = 400/8
+
+
+pygame.display.set_caption("SOLUCION DEL PROBLEMA DE LAS 8 REINAS")   #Buscar como se ponen las tildes
+
+
+
+# Dibuja el cuadrado que sera de la medida de la pantalla creada
+black_square_that_is_the_size_of_the_screen = pygame.Surface(screen.get_size())
+
+# Le pone el color de fondo gris
+black_square_that_is_the_size_of_the_screen.fill((200, 200, 200))
+
+# Dibuja el cuadrado negro a partir de la posicion (0, 0)
+screen.blit(black_square_that_is_the_size_of_the_screen, (0, 0))
+
+# Actualiza el contenido de la pantalla
+pygame.display.flip()
+
+#Colores utilizados
+black_color = (0, 0, 0)
+white_color = (255, 255, 255)
+
+flag = True
+
+
+
+while flag:
+    odd = 1
+    for i in range(8):
+        for j in range(8):
+#dependiendo de la paridad de la variable odd el cuadrado sera blanco o negro
+            if (odd % 2) == 0:
+                color = black_color
+            else:
+                color = white_color
+            pygame.draw.rect(screen, color, (i*dim, j*dim,   dim,   dim))
+            odd += 1
+        odd += 1
+
+    pygame.display.flip()
+
+    # Rescata la cantidad de eventos, si unos es del tipo QUIT (se presiona la cruz) cierra la ventana
+    eventos = pygame.event.get()
+    if len(eventos) > 0:
+        if eventos[0].type == QUIT: flag = False
+
+
+
