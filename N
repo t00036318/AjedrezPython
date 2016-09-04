@@ -25,6 +25,15 @@ white_color = (255, 255, 255)
 
 flag = True
 
+#defino una funcion que permita crear un bloque o la imagen ajustada a screen
+def addImage(color,img=""):
+
+    block = pygame.Rect(i * dim, j * dim, dim, dim)
+    if isinstance(img,pygame.Surface):
+        img = pygame.transform.smoothscale(img,(int(dim),int(dim)))
+        screen.blit(img,(i * dim, j * dim))
+    else:
+        pygame.draw.rect(screen, color, block)
 
 
 while flag:
@@ -35,7 +44,8 @@ while flag:
                 color = black_color
             else:
                 color = white_color
-            pygame.draw.rect(screen, color, (i*dim, j*dim,   dim,   dim))
+            #llamo a la funcion y cargo la imagen
+            addImage(color,pygame.image.load('data\image.png')):
             odd += 1
         odd += 1
 
@@ -45,6 +55,11 @@ while flag:
     eventos = pygame.event.get()
     if len(eventos) > 0:
         if eventos[0].type == QUIT: flag = False
+
+
+# agregar una imagen como rect
+
+
 
 
 
